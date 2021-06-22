@@ -1,1 +1,126 @@
 package app;
+/**
+ * 
+ * The Palindrome class handles all the logic to find the nearest palindrome.
+ * 
+ * @author Jason Cheong
+ * @version 1.0
+ * @since 2021-06-20
+ */
+import java.util.ArrayList;
+
+public class Palindrome {
+    /**
+     * Loops through the characters within the string forwards and backwards consecutively
+     * to determine whether the string is a valid palindrome.
+     * @param string    A string of integers.
+     * @return boolean  Returns true if the string argument is a palindrome otherwise it returns false.
+     */
+    public static boolean isValid(String string) {
+        int i = 0;
+        int j = string.length() - 1;
+
+        while (i < j) {
+            if (string.charAt(i) != string.charAt(j)) {
+                return false;
+            }
+
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    /**
+     * Converts the string argument to a valid palindrome.
+     * @param string   A string of integers.
+     * @return String  A valid palindrome.
+     */
+    public static String convert(String string) {
+        if (isValid(string)) {
+            return string;
+        }
+    
+        int strLen = string.length();
+        int halfIndex = strLen / 2;
+        boolean isOdd = strLen % 2 == 1;
+        String palindrome = "";
+    
+        for (int i = 0; i < halfIndex; i++) {
+            palindrome += string.charAt(i);
+        }
+
+        if (isOdd) {
+            palindrome += string.charAt(halfIndex);
+        }
+
+        for (int i = halfIndex - 1; i >= 0; i--) {
+            palindrome += string.charAt(i);
+        }
+    
+        return palindrome;
+    }
+
+    /**
+     * Converts the original string argument to a palindrome, creates two (preceding and succeeding) palindrome sequences 
+     * and compares the difference between them all with the lowest being returned.
+     * @param string   A string of integers
+     * @return String  The nearest palindrome. If the difference is equal between any of palindrome sequences then it
+     *                 will return the lower one.
+     */
+    public static String findNearest(String string) {
+        if (string == null || string.isEmpty()) {
+            return "Please enter a number";
+        }
+
+        if (!string.matches("[0-9]+")) {
+            return "Input can only contain numbers";
+        }
+
+        int length = string.length();
+        int number = Integer.parseInt(string);
+
+        if (number < 0) {
+            return "Negative numbers cannot be a palindrome";
+        }
+
+        if (number == 0) {
+            return "Cannot return a palindrome that is less than zero";
+        }
+
+        if (number > 0 && length < 2) {
+            return Integer.toString(number - 1);
+        }
+
+        int power = length / 2;
+        int calcPow = (int) Math.pow(10, power);
+        String low = Integer.toString(number - calcPow);
+        String reg = string;
+        String high = Integer.toString(number + calcPow);
+
+        if (length % 2 == 0 && low.length() != reg.length()) {
+            low = "9".repeat(low.length());
+        }
+
+        String lowerBound = convert(low);
+        String regBound = convert(reg);
+        String upperBound = convert(high);
+
+        ArrayList<String> boundaries = new ArrayList<String>();
+        boundaries.add(lowerBound);
+        if (!isValid(reg)) {
+            boundaries.add(regBound);
+        }
+        boundaries.add(upperBound);
+
+        int index = 0;
+        int value = Math.abs(number - Integer.parseInt(boundaries.get(0)));
+        for (int i = 0; i < boundaries.size(); i++) {
+            int diff = Math.abs(number - Integer.parseInt(boundaries.get(i)));
+            if (diff < value) {
+                index = i;
+            }
+        }
+        return boundaries.get(index); 
+    }
+}
