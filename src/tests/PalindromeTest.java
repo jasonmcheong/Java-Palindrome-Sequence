@@ -57,12 +57,19 @@ public class PalindromeTest {
     public void alphabetTest() throws Exception {
 		input = "abc";
         output = palindrome.findNearest(input);
-        assertEquals("Input can only contain numbers", output);
+        assertEquals("Please enter a valid number", output);
+    }
+	
+	@Test
+    public void numberFormatTest() throws Exception {
+		input = "-123-?456";
+        output = palindrome.findNearest(input);
+        assertEquals("Please enter a valid number", output);
     }
 	
 	@Test
     public void numberIsNegativeTest() throws Exception {
-		input = "-1";
+		input = "-12";
         output = palindrome.findNearest(input);
         assertEquals("Negative numbers cannot be a palindrome", output);
     }

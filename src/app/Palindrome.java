@@ -19,7 +19,8 @@ public class Palindrome {
      */
 	 public static void main(String[] args) {
 		 Palindrome palindrome = new Palindrome();
-		 palindrome.findNearest("1234");
+		 String output = palindrome.findNearest("-123-?123");
+		 System.out.println(output);
 	 }
 	
     /**
@@ -84,9 +85,9 @@ public class Palindrome {
         if (string == null || string.isEmpty() || string.trim().isEmpty()) {
             return "Please enter a number";
         }
-
-        if (!string.matches("[0-9]+")) {
-            return "Input can only contain numbers";
+        
+        if (!string.matches("-?[0-9]+")) {
+            return "Please enter a valid number";
         }
 
         int length = string.length();
