@@ -1,22 +1,34 @@
-package app;
 /**
  * 
  * The Palindrome class handles all the logic to find the nearest palindrome.
  * 
  * @author Jason Cheong
  * @version 1.0
- * @since 2021-06-20
+ * @since 2021-06-21
  */
+package app;
+
 import java.util.ArrayList;
 
 public class Palindrome {
+	/**
+     * Main method that creates a new instance of the Palindrome class and calls the main method
+     * to find the nearest palindrome from a given string of integers
+     * @param args           Unused
+     * @exception Exception  Throws exception if anything goes wrong
+     */
+	 public static void main(String[] args) {
+		 Palindrome palindrome = new Palindrome();
+		 palindrome.findNearest("1234");
+	 }
+	
     /**
      * Loops through the characters within the string forwards and backwards consecutively
      * to determine whether the string is a valid palindrome.
      * @param string    A string of integers.
      * @return boolean  Returns true if the string argument is a palindrome otherwise it returns false.
      */
-    public static boolean isValid(String string) {
+    boolean isValid(String string) {
         int i = 0;
         int j = string.length() - 1;
 
@@ -36,7 +48,7 @@ public class Palindrome {
      * @param string   A string of integers.
      * @return String  A valid palindrome.
      */
-    public static String convert(String string) {
+    String convert(String string) {
         if (isValid(string)) {
             return string;
         }
@@ -68,7 +80,7 @@ public class Palindrome {
      * @return String  The nearest palindrome. If the difference is equal between any of palindrome sequences then it
      *                 will return the lower one.
      */
-    public static String findNearest(String string) {
+    String findNearest(String string) {
         if (string == null || string.isEmpty()) {
             return "Please enter a number";
         }
