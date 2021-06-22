@@ -28,7 +28,7 @@ public class Palindrome {
      * @param string    A string of integers.
      * @return boolean  Returns true if the string argument is a palindrome otherwise it returns false.
      */
-    boolean isValid(String string) {
+    public boolean isValid(String string) {
         int i = 0;
         int j = string.length() - 1;
 
@@ -48,7 +48,7 @@ public class Palindrome {
      * @param string   A string of integers.
      * @return String  A valid palindrome.
      */
-    String convert(String string) {
+    public String convert(String string) {
         if (isValid(string)) {
             return string;
         }
@@ -80,8 +80,8 @@ public class Palindrome {
      * @return String  The nearest palindrome. If the difference is equal between any of palindrome sequences then it
      *                 will return the lower one.
      */
-    String findNearest(String string) {
-        if (string == null || string.isEmpty()) {
+    public String findNearest(String string) {
+        if (string == null || string.isEmpty() || string.trim().isEmpty()) {
             return "Please enter a number";
         }
 
@@ -130,6 +130,7 @@ public class Palindrome {
         for (int i = 0; i < boundaries.size(); i++) {
             int diff = Math.abs(number - Integer.parseInt(boundaries.get(i)));
             if (diff < value) {
+            	value = diff;
                 index = i;
             }
         }
