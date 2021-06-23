@@ -24,6 +24,11 @@ Output: "121"
 3. The difference is evaluated between the input and the three palindromes
 4. Returns the palindrome that is closest to the input. If there is a tie, the smaller palindrome will be returned instead
 
+## Assumptions
+Machine has the following installed:
+- Java Development Kit (Java SE 16)
+- Integrated Development Environment (IDE)
+
 ## Accepted inputs
 - Positive integers
 
