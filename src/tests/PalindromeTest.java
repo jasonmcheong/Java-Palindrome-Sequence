@@ -36,35 +36,35 @@ public class PalindromeTest {
 	public void nullStringTest() throws Exception {
 		input = null;
 		output = palindrome.findNearest(input);
-		assertEquals("Please enter a number", output);
+		assertEquals("An input must be specified", output);
 	}
 
 	@Test
 	public void emptyStringTest() throws Exception {
 		input = "";
 		output = palindrome.findNearest(input);
-		assertEquals("Please enter a number", output);
+		assertEquals("An input must be specified", output);
 	}
 
 	@Test
 	public void whiteSpaceTest() throws Exception {
 		input = " ";
 		output = palindrome.findNearest(input);
-		assertEquals("Please enter a number", output);
+		assertEquals("An input must be specified", output);
 	}
 
 	@Test
 	public void alphabetTest() throws Exception {
 		input = "abc";
 		output = palindrome.findNearest(input);
-		assertEquals("Please enter a valid number", output);
+		assertEquals("A valid number must be provided", output);
 	}
 
 	@Test
 	public void numberFormatTest() throws Exception {
 		input = "-123-?456";
 		output = palindrome.findNearest(input);
-		assertEquals("Please enter a valid number", output);
+		assertEquals("A valid number must be provided", output);
 	}
 
 	@Test
@@ -96,17 +96,17 @@ public class PalindromeTest {
 	}
 
 	@Test
-	public void oddStringLengthTest() throws Exception {
-		input = "10001";
-		output = palindrome.findNearest(input);
-		assertEquals("9999", output);
-	}
-
-	@Test
 	public void evenStringLengthTest() throws Exception {
 		input = "1001";
 		output = palindrome.findNearest(input);
 		assertEquals("999", output);
+	}
+
+	@Test
+	public void oddStringLengthTest() throws Exception {
+		input = "10001";
+		output = palindrome.findNearest(input);
+		assertEquals("9999", output);
 	}
 
 	@Test

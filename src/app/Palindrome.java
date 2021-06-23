@@ -106,11 +106,11 @@ public class Palindrome {
 	 */
 	public String findNearest(String string) {
 		if (string == null || string.isEmpty() || string.trim().isEmpty()) {
-			return "Please enter a number";
+			return "An input must be specified";
 		}
 
 		if (!string.matches("-?[0-9]+")) {
-			return "Please enter a valid number";
+			return "A valid number must be provided";
 		}
 
 		int length = string.length();
