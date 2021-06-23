@@ -26,7 +26,7 @@ Output: "121"
 
 ## Assumptions
 Machine has the following installed and configured:
-- Java Development Kit (Java SE 16)
+- Java Development Kit (Java SE 16) 
 - JUnit 5
 - Integrated Development Environment (IDE)
 
