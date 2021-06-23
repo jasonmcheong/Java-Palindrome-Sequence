@@ -4,7 +4,7 @@
  * 
  * @author Jason Cheong
  * @version 1.0
- * @since 2021-06-21
+ * @since 2021-06-22
  */
 package app;
 
@@ -21,20 +21,26 @@ public class Palindrome {
 	 * @exception Exception Throws exception if anything goes wrong
 	 */
 	public static void main(String[] args) {
+		// Creating class instances
 		Palindrome palindrome = new Palindrome();
 		Scanner scanner = new Scanner(System.in);
 
+		// User dialog
 		System.out.println("You may type 'exit' at any time to leave the program.");
 		boolean exit = false;
 		while (!exit) {
 			System.out.println("Please enter a number:");
 			String input = scanner.nextLine();
+
+			// If the user types exit it will terminate the program
 			if (input.equals("exit")) {
 				System.out.println("The program has been terminated...");
 				exit = !exit;
 				scanner.close();
 				break;
 			}
+
+			// Will return the palindrome or a user friendly error message
 			String output = palindrome.findNearest(input);
 			System.out.println(output);
 			System.out.println("");
@@ -54,6 +60,7 @@ public class Palindrome {
 		int j = string.length() - 1;
 
 		while (i < j) {
+			// If at any point the characters don't match then it's not a palindrome
 			if (string.charAt(i) != string.charAt(j)) {
 				return false;
 			}
@@ -71,23 +78,30 @@ public class Palindrome {
 	 * @return String A valid palindrome.
 	 */
 	public String convert(String string) {
+		// If it's a palindrome already then we just want to return it
 		if (isValid(string)) {
 			return string;
 		}
 
+		// Getting the middle index of the string
 		int strLen = string.length();
 		int halfIndex = strLen / 2;
 		boolean isOdd = strLen % 2 == 1;
 		String palindrome = "";
 
+		// Iterating through the string going from start to half and building the start
+		// of the new string
 		for (int i = 0; i < halfIndex; i++) {
 			palindrome += string.charAt(i);
 		}
 
+		// We want to keep the number in the middle if it's odd
 		if (isOdd) {
 			palindrome += string.charAt(halfIndex);
 		}
 
+		// Iterating through the string going from half to start and building the end of
+		// the new string
 		for (int i = halfIndex - 1; i >= 0; i--) {
 			palindrome += string.charAt(i);
 		}
@@ -105,6 +119,7 @@ public class Palindrome {
 	 *         of palindrome sequences then it will return the lower one.
 	 */
 	public String findNearest(String string) {
+		// Input validation
 		if (string == null || string.isEmpty() || string.trim().isEmpty()) {
 			return "An input must be specified";
 		}
@@ -124,24 +139,33 @@ public class Palindrome {
 			return "Cannot return a palindrome that is less than zero";
 		}
 
+		// Only two digits, we can just minus one from the input
 		if (number > 0 && length < 2) {
 			return Integer.toString(number - 1);
 		}
 
+		// Calculating the lower, regular and upper numbers so that we can later convert
+		// them to a palindrome
 		int power = length / 2;
 		int calcPow = (int) Math.pow(10, power);
 		String low = Integer.toString(number - calcPow);
 		String reg = string;
 		String high = Integer.toString(number + calcPow);
 
+		// Catching edge case where the length of low goes below the length of regular
+		// ie. 1000 -> 919
+		// In this case, we want to return 9 x low length
 		if (length % 2 == 0 && low.length() != reg.length()) {
 			low = "9".repeat(low.length());
 		}
 
+		// Converting the three numbers to palindromes
 		String lowerBound = convert(low);
 		String regBound = convert(reg);
 		String upperBound = convert(high);
 
+		// Creating a new array list to iterate over which includes our palindromes that
+		// we want to validate
 		ArrayList<String> boundaries = new ArrayList<String>();
 		boundaries.add(lowerBound);
 		if (!isValid(reg)) {
@@ -149,6 +173,7 @@ public class Palindrome {
 		}
 		boundaries.add(upperBound);
 
+		// Checking which palindrome has the lowest difference
 		int index = 0;
 		int value = Math.abs(number - Integer.parseInt(boundaries.get(0)));
 		for (int i = 0; i < boundaries.size(); i++) {
@@ -158,6 +183,7 @@ public class Palindrome {
 				index = i;
 			}
 		}
+		// Returning the palindrome with the lowest difference
 		return boundaries.get(index);
 	}
 }
