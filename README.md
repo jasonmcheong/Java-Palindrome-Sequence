@@ -25,8 +25,9 @@ Output: "121"
 4. Returns the palindrome that is closest to the input. If there is a tie, the smaller palindrome will be returned instead
 
 ## Assumptions
-Machine has the following installed:
+Machine has the following installed and configured:
 - Java Development Kit (Java SE 16)
+- JUnit 5
 - Integrated Development Environment (IDE)
 
 ## Accepted inputs
