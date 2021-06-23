@@ -9,19 +9,36 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Palindrome {
 	/**
-	 * Main method that creates a new instance of the Palindrome class and calls the
-	 * main method to find the nearest palindrome from a given string of integers
+	 * Main method that accepts a string of integers as input and outputs the
+	 * nearest palindrome. The user may type 'exit' at any point to exit the
+	 * program.
 	 * 
 	 * @param args Unused
 	 * @exception Exception Throws exception if anything goes wrong
 	 */
 	public static void main(String[] args) {
 		Palindrome palindrome = new Palindrome();
-		String output = palindrome.findNearest("-123-?123");
-		System.out.println(output);
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("You may type 'exit' at any time to leave the program.");
+		boolean exit = false;
+		while (!exit) {
+			System.out.println("Please enter a number:");
+			String input = scanner.nextLine();
+			if (input.equals("exit")) {
+				System.out.println("The program has been terminated...");
+				exit = !exit;
+				scanner.close();
+				break;
+			}
+			String output = palindrome.findNearest(input);
+			System.out.println(output);
+			System.out.println("");
+		}
 	}
 
 	/**
